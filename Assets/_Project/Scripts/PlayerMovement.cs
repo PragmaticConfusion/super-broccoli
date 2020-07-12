@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.Animations;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public int controlSchemes;
     public JumpHelper canJump;
 
+    private Animator playerAnimator;
     private float speed = 4f;
     //public PlayerMovement player; // awkward naming, probably should've named the class "Player"
     private Rigidbody2D playerBody;
@@ -24,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         playerBody = GetComponent<Rigidbody2D>();
+        playerAnimator = GetComponent<Animator>();
         controlSchemes = 1;
     }
 
@@ -32,10 +35,13 @@ public class PlayerMovement : MonoBehaviour
     {
         bool clearance = canJump.getJump(); // canJump is a helper, and getJump returns bool 
                                             // checking if player is on the ground
+        playerAnimator.SetBool("IsJumping", !clearance);
+        float horiz = Input.GetAxis("Horizontal");
+        playerAnimator.SetBool("IsWalking", horiz != 0);
         timer += Time.deltaTime;
         if (timer > 4f)
         {
-            Debug.Log(Input.GetAxis("Horizontal"));
+            Debug.Log(horiz);
             controlSchemes += 1;
             if (controlSchemes > 4)
             {
@@ -47,29 +53,30 @@ public class PlayerMovement : MonoBehaviour
         switch (controlSchemes)
         {
             case 1: // default controls
-                transform.position += new Vector3(Input.GetAxis("Horizontal") * speed * Time.deltaTime, 0f); // movement
+                transform.position += new Vector3(horiz * speed * Time.deltaTime, 0f); // movement
                 if (Input.GetButtonDown("Jump") & clearance)
                 {
                     PlayerJump(defaultJumpPower);
                 }
                 break;
             case 2:
-                transform.position -= new Vector3(Input.GetAxis("Horizontal") * speed * Time.deltaTime, 0f); // movement
+                transform.position -= new Vector3(horiz * speed * Time.deltaTime, 0f); // movement
                 if (Input.GetButtonDown("Jump") & clearance)
                 {
                     PlayerJump(defaultJumpPower);
                 }
                 break;
             case 3:
-                if(Input.GetButtonDown("Jump"))
+                if (Input.GetButtonDown("Jump"))
                 {
                     transform.position += new Vector3(speed * Time.deltaTime, 0f); // movement
 
                 }
-                if ((Input.GetAxis("Horizontal") > 0) & canJump.getJump())
+                if ((horiz > 0) & canJump.getJump())
                 {
                     PlayerJump(strongJumpPower);
-                } else if ((Input.GetAxis("Horizontal") < 0))
+                }
+                else if ((horiz < 0))
                 {
                     transform.position -= new Vector3(speed * Time.deltaTime, 0f); // movement
 
@@ -81,22 +88,22 @@ public class PlayerMovement : MonoBehaviour
                     transform.position -= new Vector3(speed * Time.deltaTime, 0f); // movement
 
                 }
-                if ((Input.GetAxis("Horizontal") < 0) & canJump.getJump())
+                if ((horiz < 0) & canJump.getJump())
                 {
                     PlayerJump(weakJumpPower);
-                } else if ((Input.GetAxis("Horizontal") > 0))
+                }
+                else if ((horiz > 0))
                 {
                     transform.position += new Vector3(speed * Time.deltaTime, 0f); // movement
 
                 }
                 break;
         }
-                
+
     }
 
     public void PlayerJump(float power)
     {
         playerBody.velocity = new Vector3(playerBody.velocity.x, power * 1f);
-
     }
 }
