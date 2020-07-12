@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class WinCondition : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public ScreenController eventSystem;
+    
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        eventSystem.ResetUI();
+        eventSystem.WinGame();
     }
 }

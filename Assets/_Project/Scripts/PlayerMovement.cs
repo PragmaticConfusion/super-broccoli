@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         bool clearance = canJump.getJump(); // canJump is a helper, and getJump returns bool 
                                             // checking if player is on the ground
         timer += Time.deltaTime;
-        if (timer > 5f)
+        if (timer > 4f)
         {
             Debug.Log(Input.GetAxis("Horizontal"));
             controlSchemes += 1;

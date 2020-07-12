@@ -11,11 +11,11 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            player.SetActive(false);
+            player.gameObject.SetActive(false);
             eventSystem.ResetUI();
             eventSystem.StartGame();
             player.transform.position = new Vector3(-8f, -0.5f);
-            player.SetActive(true);
+            player.gameObject.SetActive(true);
         }
        
     }

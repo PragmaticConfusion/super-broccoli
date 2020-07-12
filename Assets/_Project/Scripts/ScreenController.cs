@@ -6,6 +6,7 @@ public class ScreenController : MonoBehaviour
 {
     public GameObject startCanvas;
     public GameObject pauseCanvas;
+    public GameObject winCanvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,11 +36,25 @@ public class ScreenController : MonoBehaviour
     {
         Application.Quit();
     }
+    public void WinGame()
+    {
+        winCanvas.SetActive(true);
+        StartCoroutine(EndGame());
+    }
+
+    IEnumerator EndGame()
+    {
+    
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(5);
+
+    }
 
     public void ResetUI()
     {
         startCanvas.gameObject.SetActive(false);
         pauseCanvas.gameObject.SetActive(false);
+        winCanvas.gameObject.SetActive(false);
         Time.timeScale = 0f;
     }
     // Update is called once per frame
