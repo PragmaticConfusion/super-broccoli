@@ -1,4 +1,4 @@
-name: Build Haunted Jaunt
+name: Build Super Broccoli
 
 on:
   pull_request: {}
