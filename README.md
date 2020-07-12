@@ -7,12 +7,7 @@ This game was created in 48 hours for the GMTK Game Jam 2020. The theme was "Out
 
 ** CREDITS **
 
-Rahul Arasikere, Tanish Shelar, Grace Yoon
-
-
-** SPECIAL THANKS **
-
-Vian Ambar Agustono
+Rahul Arasikere, Tanish Shelar, Vian Ambar Agustono, Grace Yoon
 
 
 ** CONTROLS **
