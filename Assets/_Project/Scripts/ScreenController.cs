@@ -25,9 +25,15 @@ public class ScreenController : MonoBehaviour
         pauseCanvas.SetActive(true);
     }
 
-    public void ResumeGame(){
+    public void ResumeGame()
+    {
         Time.timeScale = 1f;
         pauseCanvas.SetActive(false);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     void ResetUI()
