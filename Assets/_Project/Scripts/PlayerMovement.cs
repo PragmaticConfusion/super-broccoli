@@ -11,8 +11,8 @@ public class PlayerMovement : MonoBehaviour
 
     public int controlSchemes;
     public JumpHelper canJump;
-    public Animator playerAnimator;
 
+    private Animator playerAnimator;
     private float speed = 4f;
     //public PlayerMovement player; // awkward naming, probably should've named the class "Player"
     private Rigidbody2D playerBody;
