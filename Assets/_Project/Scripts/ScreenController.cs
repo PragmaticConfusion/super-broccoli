@@ -36,7 +36,7 @@ public class ScreenController : MonoBehaviour
         Application.Quit();
     }
 
-    void ResetUI()
+    public void ResetUI()
     {
         startCanvas.gameObject.SetActive(false);
         pauseCanvas.gameObject.SetActive(false);

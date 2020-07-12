@@ -69,8 +69,7 @@ public class PlayerMovement : MonoBehaviour
                 if ((Input.GetAxis("Horizontal") > 0) & canJump.getJump())
                 {
                     PlayerJump(strongJumpPower);
-                }
-                if ((Input.GetAxis("Horizontal") < 0))
+                } else if ((Input.GetAxis("Horizontal") < 0))
                 {
                     transform.position -= new Vector3(speed * Time.deltaTime, 0f); // movement
 
@@ -85,10 +84,9 @@ public class PlayerMovement : MonoBehaviour
                 if ((Input.GetAxis("Horizontal") < 0) & canJump.getJump())
                 {
                     PlayerJump(weakJumpPower);
-                }
-                if ((Input.GetAxis("Horizontal") > 0))
+                } else if ((Input.GetAxis("Horizontal") > 0))
                 {
-                    transform.position -= new Vector3(speed * Time.deltaTime, 0f); // movement
+                    transform.position += new Vector3(speed * Time.deltaTime, 0f); // movement
 
                 }
                 break;
