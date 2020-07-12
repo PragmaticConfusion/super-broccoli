@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    void OnCollisionEnter(Collision other)
+    public ScreenController eventSystem;
+    public GameObject player;
+
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Player")
         {
-            Destroy(gameObject, 0.1f);
+            player.SetActive(false);
+            eventSystem.ResetUI();
+            eventSystem.StartGame();
+            player.transform.position = new Vector3(-8f, -0.5f);
+            player.SetActive(true);
         }
+       
     }
 }

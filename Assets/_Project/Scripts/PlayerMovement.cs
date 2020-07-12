@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     PlayerJump(strongJumpPower);
                 }
-                if ((horiz < 0))
+                else if ((horiz < 0))
                 {
                     transform.position -= new Vector3(speed * Time.deltaTime, 0f); // movement
 
@@ -92,9 +92,9 @@ public class PlayerMovement : MonoBehaviour
                 {
                     PlayerJump(weakJumpPower);
                 }
-                if ((horiz > 0))
+                else if ((horiz > 0))
                 {
-                    transform.position -= new Vector3(speed * Time.deltaTime, 0f); // movement
+                    transform.position += new Vector3(speed * Time.deltaTime, 0f); // movement
 
                 }
                 break;
