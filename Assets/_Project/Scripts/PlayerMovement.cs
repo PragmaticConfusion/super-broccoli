@@ -8,9 +8,8 @@ public class PlayerMovement : MonoBehaviour
 
     float playerSize = 1f;
 
-    public float jumpPower = 4f;
     private float speed = 4f;
-
+    //public PlayerMovement player; // awkward naming, probably should've named the class "Player"
     private Rigidbody2D playerBody;
 
 
@@ -25,18 +24,11 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.position += new Vector3(Input.GetAxis("Horizontal") * speed * Time.deltaTime, 0f); // movement
 
+    }
 
-        // Raycast to check if player is close to ground to allow jump 
+    public void PlayerJump(float power)
+    {
+        playerBody.velocity = new Vector3(playerBody.velocity.x, power * 1f);
 
-        RaycastHit2D jumpCheck = Physics2D.Raycast(new Vector3(transform.position.x, 
-            transform.position.y - 0.5f), new Vector3(0, -1)); 
-
-        if (jumpCheck.distance < playerSize * 0.05f && playerBody.velocity.y < 0.05f)
-        {
-            if (Input.GetButtonDown("Jump"))
-            {
-                playerBody.velocity = new Vector3(playerBody.velocity.x, jumpPower * 1f);
-            }
-        }    
     }
 }
